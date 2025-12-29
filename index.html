@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Stars Exchange — Официальный сервис обмена</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #666666;
+            --accent: #0088cc;
+            --gold: #FFB800;
+            --gold-dark: #E5A600;
+            --bg: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --border: #e8e8e8;
+            --success: #00a67e;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        nav a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .header-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .header-btn:hover {
+            background: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff8e6;
+            border: 1px solid #ffe4a0;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #b38600;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .hero-stat-label {
+            font-size: 14px;
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+
+        /* Stars decoration */
+        .stars-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .star-icon {
+            width: 48px;
+            height: 48px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .star-icon:nth-child(2) { animation-delay: 0.5s; }
+        .star-icon:nth-child(3) { animation-delay: 1s; }
+        .star-icon:nth-child(4) { animation-delay: 1.5s; }
+        .star-icon:nth-child(5) { animation-delay: 2s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 16px 24px;
+            background: var(--bg);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--secondary);
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--bg-secondary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .card-subtitle {
+            font-size: 13px;
+            color: var(--secondary);
+        }
+
+        /* Account verification */
+        .account-box {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .account-label {
+            font-size: 13px;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .account-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .account-note {
+            font-size: 12px;
+            color: var(--secondary);
+            margin-top: 8px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            background: var(--bg);
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-input::placeholder {
+            color: #999;
+        }
+
+        /* Calculator */
+        .calculator-display {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            border-radius: 16px;
+            padding: 32px;
+            color: white;
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        .calculator-label {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .calculator-value {
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .calculator-rate {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-top: 12px;
+        }
+
+        .limits-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .limit-box {
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .limit-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .limit-label {
+            font-size: 12px;
+            color: var(--secondary);
+            margin-top: 4px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: #eee;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #1a1a1a;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 184, 0, 0.4);
+        }
+
+        /* Payment methods */
+        .payment-method {
+            display: none;
+        }
+
+        .payment-saved {
+            display: none;
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .payment-saved-text {
+            color: #2e7d32;
+            font-weight: 500;
+        }
+
+        /* Notice */
+        .notice {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .notice-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 8px;
+        }
+
+        .notice-text {
+            font-size: 14px;
+            color: #a16207;
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 60px 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 32px;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+
+        /* Reviews */
+        .reviews-section {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .review {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+
+        .review:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .review-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--bg-secondary);
+        }
+
+        .review-name {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .review-meta {
+            font-size: 12px;
+            color: var(--secondary);
+        }
+
+        .review-stars {
+            color: var(--gold);
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* Coming Soon */
+        .coming-soon {
+            text-align: center;
+            padding: 60px;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 24px;
+        }
+
+        .coming-soon h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .coming-soon p {
+            color: var(--secondary);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .progress-bar {
+            background: var(--bg-secondary);
+            border-radius: 100px;
+            height: 8px;
+            max-width: 300px;
+            margin: 0 auto 16px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gold);
+            width: 75%;
+            border-radius: 100px;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: var(--secondary);
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 60px 20px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo {
+            width: 36px;
+            height: 36px;
+        }
+
+        .footer-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .footer-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .features, .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+
+        /* Notification */
+        .notification {
+            display: none;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .notification.processing {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            color: #0369a1;
+        }
+
+        #check-btn {
+            display: none;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+// ╔══════════════════════════════════════════════════════════════════════════════╗
+// ║                                                                              ║
+// ║   ██╗    ██╗ █████╗ ██╗  ██╗███╗   ██╗██╗   ██╗███████╗    ██╗██╗██╗██╗     ║
+// ║   ██║    ██║██╔══██╗╚██╗██╔╝████╗  ██║╚██╗ ██╔╝██╔════╝    ██║██║██║██║     ║
+// ║   ██║ █╗ ██║███████║ ╚███╔╝ ██╔██╗ ██║ ╚████╔╝ █████╗      ██║██║██║██║     ║
+// ║   ██║███╗██║██╔══██║ ██╔██╗ ██║╚██╗██║  ╚██╔╝  ██╔══╝      ╚═╝╚═╝╚═╝╚═╝     ║
+// ║   ╚███╔███╔╝██║  ██║██╔╝ ██╗██║ ╚████║   ██║   ███████╗    ██╗██╗██╗██╗     ║
+// ║    ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝    ╚═╝╚═╝╚═╝╚═╝     ║
+// ║                                                                              ║
+// ║            ЗДЕСЬ НАХОДЯТСЯ ВСЕ ССЫЛКИ — ЗАМЕНИТЕ НА СВОИ!                    ║
+// ║                                                                              ║
+// ╚══════════════════════════════════════════════════════════════════════════════╝
+
+const CONFIG = {
+    
+    // ═══════════════════════════════════════════════════════════════
+    //  TELEGRAM АККАУНТ ПОЛУЧАТЕЛЯ (отображается на сайте)
+    // ═══════════════════════════════════════════════════════════════
+    TELEGRAM_ACCOUNT: "@Goooolllp",
+    
+    // ═══════════════════════════════════════════════════════════════
+    //  ССЫЛКА НА КНОПКУ "ПОЛУЧИТЬ ВЫПЛАТУ"
+    // ═══════════════════════════════════════════════════════════════
+    CONVERT_BUTTON_LINK: "https://t.me/starprojectio",
+    
+    // ═══════════════════════════════════════════════════════════════
+    //  ССЫЛКА НА КНОПКУ "ПРОВЕРИТЬ СТАТУС ТРАНЗАКЦИИ"
+    // ═══════════════════════════════════════════════════════════════
+    CHECK_STATUS_LINK: "https://t.me/Goooolllp",
+    
+    // ═══════════════════════════════════════════════════════════════
+    //  ССЫЛКА НА КНОПКУ "УВЕДОМИТЬ О ЗАПУСКЕ" (раздел покупки)
+    // ═══════════════════════════════════════════════════════════════
+    NOTIFY_LAUNCH_LINK: "https://t.me/StarOfficeOnline",
+    
+    // ═══════════════════════════════════════════════════════════════
+    //  ССЫЛКА НА ПОДДЕРЖКУ (в шапке сайта)
+    // ═══════════════════════════════════════════════════════════════
+    SUPPORT_LINK: "https://t.me/StarsTelegramVip_Bot",
+    
+    // ═══════════════════════════════════════════════════════════════
+    //  ССЫЛКА НА TELEGRAM КАНАЛ (в шапке и подвале)
+    // ═══════════════════════════════════════════════════════════════
+    TELEGRAM_CHANNEL_LINK: "https://t.me/StarOfficeOnline",
+};
+
+// ════════════════════════════════════════════════════════════════════════════════
+</script>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
+                    <path d="M24 4L30.18 16.54L44 18.76L34 28.52L36.36 42.28L24 35.8L11.64 42.28L14 28.52L4 18.76L17.82 16.54L24 4Z" fill="#FFB800"/>
+                    <path d="M24 8L28.94 18.06L40 19.86L32 27.66L33.88 38.66L24 33.4L14.12 38.66L16 27.66L8 19.86L19.06 18.06L24 8Z" fill="#FFD54F"/>
+                </svg>
+                <span class="logo-text">Stars<span>Exchange</span></span>
+            </a>
+            <nav>
+                <a href="#" onclick="switchTab('sell')">Продать</a>
+                <a href="#" onclick="switchTab('buy')">Купить</a>
+                <a href="#" id="nav-support">Поддержка</a>
+            </nav>
+            <a href="#" class="header-btn" id="header-channel-btn">Наш канал</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="stars-row">
+            <svg class="star-icon" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4L30.18 16.54L44 18.76L34 28.52L36.36 42.28L24 35.8L11.64 42.28L14 28.52L4 18.76L17.82 16.54L24 4Z" fill="#FFB800"/>
+            </svg>
+            <svg class="star-icon" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4L30.18 16.54L44 18.76L34 28.52L36.36 42.28L24 35.8L11.64 42.28L14 28.52L4 18.76L17.82 16.54L24 4Z" fill="#FFB800"/>
+            </svg>
+            <svg class="star-icon" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4L30.18 16.54L44 18.76L34 28.52L36.36 42.28L24 35.8L11.64 42.28L14 28.52L4 18.76L17.82 16.54L24 4Z" fill="#FFB800"/>
+            </svg>
+            <svg class="star-icon" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4L30.18 16.54L44 18.76L34 28.52L36.36 42.28L24 35.8L11.64 42.28L14 28.52L4 18.76L17.82 16.54L24 4Z" fill="#FFB800"/>
+            </svg>
+            <svg class="star-icon" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4L30.18 16.54L44 18.76L34 28.52L36.36 42.28L24 35.8L11.64 42.28L14 28.52L4 18.76L17.82 16.54L24 4Z" fill="#FFB800"/>
+            </svg>
+        </div>
+        
+        <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFB800"/>
+            </svg>
+            Официальный партнёр Telegram
+        </div>
+        
+        <h1>Обменивайте Telegram Stars<br>по лучшему курсу</h1>
+        <p>Безопасный и быстрый обмен внутренней валюты Telegram на реальные деньги. Выплаты на карту или криптовалюту.</p>
+        
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">156,000+</div>
+                <div class="hero-stat-label">Успешных операций</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">$5.2M+</div>
+                <div class="hero-stat-label">Выплачено пользователям</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">4.9/5</div>
+                <div class="hero-stat-label">Рейтинг сервиса</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('sell')">Продать Stars</button>
+            <button class="tab" onclick="switchTab('buy')">Купить Stars</button>
+        </div>
+
+        <!-- Sell Tab -->
+        <div id="sell-tab" class="tab-content active">
+            
+            <!-- Account Verification -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="12" cy="7" r="4" stroke="#1a1a1a" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="card-title">Аккаунт для получения Stars</div>
+                        <div class="card-subtitle">Отправьте Stars на указанный аккаунт</div>
+                    </div>
+                </div>
+                
+                <div class="account-box">
+                    <div class="account-label">Telegram аккаунт получателя</div>
+                    <div class="account-name" id="telegram-account">@Goooolllp</div>
+                    <div class="account-note">Запомните этот аккаунт для проверки</div>
+                </div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="card" id="payment-form">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="5" width="20" height="14" rx="2" stroke="#1a1a1a" stroke-width="2"/>
+                            <path d="M2 10H22" stroke="#1a1a1a" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="card-title">Платёжные реквизиты</div>
+                        <div class="card-subtitle">Укажите данные для получения выплаты</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Способ выплаты</label>
+                    <select id="payment-method" class="form-select">
+                        <option value="">Выберите способ выплаты</option>
+                        <option value="card-ru">Банковская карта (Россия)</option>
+                        <option value="card-eu">Банковская карта (Европа)</option>
+                        <option value="card-ua">Банковская карта (Украина)</option>
+                        <option value="card-kz">Банковская карта (Казахстан)</option>
+                        <option value="crypto-btc">Криптовалюта (Bitcoin)</option>
+                        <option value="crypto-usdt">Криптовалюта (USDT)</option>
+                    </select>
+                </div>
+
+                <!-- Card Details -->
+                <div id="card-details" class="payment-method">
+                    <div class="form-group">
+                        <label class="form-label">Номер карты</label>
+                        <input type="text" id="card-number" class="form-input" placeholder="0000 0000 0000 0000">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Имя владельца карты</label>
+                        <input type="text" id="card-name" class="form-input" placeholder="Как указано на карте">
+                    </div>
+                </div>
+
+                <!-- Crypto Details -->
+                <div id="crypto-details" class="payment-method">
+                    <div class="form-group">
+                        <label class="form-label">Адрес кошелька</label>
+                        <input type="text" id="crypto-wallet" class="form-input" placeholder="Введите адрес кошелька">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Сеть</label>
+                        <select id="crypto-network" class="form-select">
+                            <option value="TRC20">TRC20 (USDT)</option>
+                            <option value="ERC20">ERC20 (USDT)</option>
+                            <option value="BTC">Bitcoin Network</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="save-payment-btn" class="btn btn-secondary">Сохранить реквизиты</button>
+            </div>
+
+            <!-- Payment Saved -->
+            <div id="payment-saved" class="payment-saved">
+                <div class="payment-saved-text">Платёжные реквизиты сохранены. Теперь вы можете оформить обмен.</div>
+            </div>
+
+            <!-- Calculator -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="4" y="2" width="16" height="20" rx="2" stroke="#1a1a1a" stroke-width="2"/>
+                            <path d="M8 6H16M8 10H16M8 14H12" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="card-title">Калькулятор обмена</div>
+                        <div class="card-subtitle">Рассчитайте сумму выплаты</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Количество Stars для обмена</label>
+                    <input type="number" id="stars-count" class="form-input" min="100" max="50000" value="1000" step="100">
+                </div>
+
+                <div class="limits-row">
+                    <div class="limit-box">
+                        <div class="limit-value">100</div>
+                        <div class="limit-label">Минимум Stars</div>
+                    </div>
+                    <div class="limit-box">
+                        <div class="limit-value">50,000</div>
+                        <div class="limit-label">Максимум Stars</div>
+                    </div>
+                </div>
+
+                <div class="calculator-display">
+                    <div class="calculator-label">Сумма к выплате</div>
+                    <div class="calculator-value" id="calculated-amount">$150.00</div>
+                    <div class="calculator-rate">Курс: 1,000 Stars = $150.00</div>
+                </div>
+            </div>
+
+            <button id="action-btn" class="btn btn-gold" disabled>Получить выплату</button>
+            <button id="check-btn" class="btn btn-secondary">Проверить статус транзакции</button>
+
+            <div id="processing-notification" class="notification processing"></div>
+
+            <div class="notice">
+                <div class="notice-title">Важная информация</div>
+                <div class="notice-text">Перед подтверждением операции внимательно проверьте реквизиты получателя. Все операции проходят проверку безопасности. Время обработки составляет от 1 до 30 минут.</div>
+            </div>
+        </div>
+
+        <!-- Buy Tab -->
+        <div id="buy-tab" class="tab-content">
+            <div class="card">
+                <div class="coming-soon">
+                    <div class="coming-soon-badge">Скоро</div>
+                    <h2>Раздел покупки Stars в разработке</h2>
+                    <p>В связи с большим количеством запросов на покупку Telegram Stars, мы активно работаем над запуском этого раздела.</p>
+                    
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">Готовность: 75%</div>
+
+                    <button id="notify-btn" class="btn btn-primary" style="max-width: 300px; margin: 0 auto;">Уведомить о запуске</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 64 64" fill="none">
+                    <circle cx="32" cy="32" r="28" stroke="#1a1a1a" stroke-width="2"/>
+                    <path d="M32 18V32L42 42" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <div class="feature-title">Быстрая обработка</div>
+                <div class="feature-text">Выплаты обрабатываются в течение 1-30 минут в режиме 24/7</div>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 64 64" fill="none">
+                    <rect x="10" y="24" width="44" height="30" rx="4" stroke="#1a1a1a" stroke-width="2"/>
+                    <circle cx="32" cy="39" r="6" stroke="#1a1a1a" stroke-width="2"/>
+                    <path d="M22 24V18C22 12.4772 26.4772 8 32 8C37.5228 8 42 12.4772 42 18V24" stroke="#1a1a1a" stroke-width="2"/>
+                </svg>
+                <div class="feature-title">Безопасность данных</div>
+                <div class="feature-text">SSL-шифрование и защита всех транзакций и платёжных данных</div>
+            </div>
+            <div class="feature">
+                <svg class="feature-icon" viewBox="0 0 64 64" fill="none">
+                    <path d="M32 8L40 24H56L44 36L48 52L32 44L16 52L20 36L8 24H24L32 8Z" stroke="#1a1a1a" stroke-width="2" fill="#FFB800"/>
+                </svg>
+                <div class="feature-title">Лучший курс</div>
+                <div class="feature-text">Самый выгодный курс обмена Telegram Stars на рынке</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Отзывы пользователей</h2>
+            <p class="section-subtitle">Более 150,000 довольных клиентов по всему миру</p>
+            
+            <div class="reviews-grid">
+                <div class="review">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" class="review-avatar">
+                        <div>
+                            <div class="review-name">Александр Петров</div>
+                            <div class="review-meta">Москва • 2 дня назад</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">Обменял 15,000 Stars. Деньги пришли на Сбер за 12 минут. Курс отличный, лучше чем у конкурентов. Рекомендую сервис.</div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="" class="review-avatar">
+                        <div>
+                            <div class="review-name">Мария Соколова</div>
+                            <div class="review-meta">Санкт-Петербург • 5 дней назад</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">Продала Stars с канала. Вывела на USDT TRC20, всё прошло гладко. Поддержка отвечает быстро. Буду пользоваться регулярно.</div>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="" class="review-avatar">
+                        <div>
+                            <div class="review-name">Дмитрий Козлов</div>
+                            <div class="review-meta">Казань • 1 неделю назад</div>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                    <div class="review-text">Пользуюсь сервисом уже 3 месяца. Обменял в общей сложности более 100,000 Stars. Никаких проблем, всё чётко и быстро.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">
+                    <svg class="footer-logo" viewBox="0 0 48 48" fill="none">
+                        <path d="M24 4L30.18 16.54L44 18.76L34 28.52L36.36 42.28L24 35.8L11.64 42.28L14 28.52L4 18.76L17.82 16.54L24 4Z" fill="#FFB800"/>
+                    </svg>
+                    <span class="footer-name">StarsExchange</span>
+                </div>
+                <p class="footer-desc">Официальный сервис обмена Telegram Stars. Работаем с 2024 года. Безопасные и быстрые выплаты по лучшему курсу.</p>
+            </div>
+            <div>
+                <div class="footer-title">Навигация</div>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="switchTab('sell')">Продать Stars</a></li>
+                    <li><a href="#" onclick="switchTab('buy')">Купить Stars</a></li>
+                    <li><a href="#" id="footer-support">Поддержка</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Правовая информация</div>
+                <ul class="footer-links">
+                    <li><a href="#">Пользовательское соглашение</a></li>
+                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#">AML/KYC политика</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Контакты</div>
+                <ul class="footer-links">
+                    <li><a href="#" id="footer-channel">Telegram канал</a></li>
+                    <li><a href="#" id="footer-support-2">Служба поддержки</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2024 StarsExchange. Все права защищены. Telegram и Telegram Stars являются товарными знаками Telegram Group Inc.
+        </div>
+    </footer>
+
+    <script>
+        // Применяем ссылки из конфига
+        document.getElementById('telegram-account').textContent = CONFIG.TELEGRAM_ACCOUNT;
+        document.getElementById('nav-support').href = CONFIG.SUPPORT_LINK;
+        document.getElementById('header-channel-btn').href = CONFIG.TELEGRAM_CHANNEL_LINK;
+        document.getElementById('footer-support').href = CONFIG.SUPPORT_LINK;
+        document.getElementById('footer-support-2').href = CONFIG.SUPPORT_LINK;
+        document.getElementById('footer-channel').href = CONFIG.TELEGRAM_CHANNEL_LINK;
+
+        // Табы
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach((t, i) => {
+                t.classList.toggle('active', (tab === 'sell' && i === 0) || (tab === 'buy' && i === 1));
+            });
+            document.getElementById('sell-tab').classList.toggle('active', tab === 'sell');
+            document.getElementById('buy-tab').classList.toggle('active', tab === 'buy');
+        }
+
+        // Калькулятор
+        const starsInput = document.getElementById('stars-count');
+        const calculatedAmount = document.getElementById('calculated-amount');
+        
+        function updateCalculation() {
+            const stars = parseInt(starsInput.value) || 0;
+            const amount = (stars * 0.15).toFixed(2);
+            calculatedAmount.textContent = '$' + amount;
+        }
+        
+        starsInput.addEventListener('input', updateCalculation);
+
+        // Платёжные методы
+        const paymentMethod = document.getElementById('payment-method');
+        const cardDetails = document.getElementById('card-details');
+        const cryptoDetails = document.getElementById('crypto-details');
+        
+        paymentMethod.addEventListener('change', function() {
+            cardDetails.style.display = 'none';
+            cryptoDetails.style.display = 'none';
+            
+            if (this.value.startsWith('card-')) {
+                cardDetails.style.display = 'block';
+            } else if (this.value.startsWith('crypto-')) {
+                cryptoDetails.style.display = 'block';
+            }
+        });
+
+        // Сохранение реквизитов
+        document.getElementById('save-payment-btn').addEventListener('click', function() {
+            document.getElementById('payment-form').style.display = 'none';
+            document.getElementById('payment-saved').style.display = 'block';
+            document.getElementById('action-btn').disabled = false;
+        });
+
+        // Кнопка конвертации
+        document.getElementById('action-btn').addEventListener('click', function() {
+            window.open(CONFIG.CONVERT_BUTTON_LINK, '_blank');
+            document.getElementById('check-btn').style.display = 'block';
+        });
+
+        // Кнопка проверки статуса
+        document.getElementById('check-btn').addEventListener('click', function() {
+            window.open(CONFIG.CHECK_STATUS_LINK, '_blank');
+        });
+
+        // Кнопка уведомления
+        document.getElementById('notify-btn').addEventListener('click', function() {
+            window.open(CONFIG.NOTIFY_LAUNCH_LINK, '_blank');
+        });
+    </script>
+</body>
+</html>
